@@ -32,9 +32,11 @@ for submission_id in submission_ids[:30]:
             'comments': response_dict['descendants'],
         }
         except KeyError as err: 
-            print(f"Problem with {response_dict}, skipping...")
-            continue
-        
+            submission_dict = {
+            'title': response_dict['title'],
+            'hn_link': f"https://news.ycombinator.com/item?id={submission_id}",
+            'comments': 0,
+            }
         submission_dicts.append(submission_dict)
 
 submission_dicts = sorted(submission_dicts, key=itemgetter('comments'),
